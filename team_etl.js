@@ -109,8 +109,7 @@ const getTeam = () =>
             // Extract step
             const teams = await getTeam();
             const teamschedule = await getTeamSchedule();
-   
-            console.log(teamschedule.dates[0].games[0].teams.away.team.name);
+  
             //Let user know the team was succesfully Extracted
             console.log("Extracted Team");
 
