@@ -77,7 +77,7 @@ const getTeam = () =>
         //if else loop that says for the first game of the season, if the
         //away teams ID = the team ID that was entered then the Home Teams
         //Name will be returned as that would be the opponent
-        if (teamschedule.dates[0].games[0].teams.away.team.id = team_id) {
+        if (teamschedule.dates[0].games[0].teams.away.team.id = parseInt(team_id)) {
           return {
             OpponentNameInFirstGame: teamschedule.dates[0].games[0].teams.home.team.name
           }
@@ -88,7 +88,7 @@ const getTeam = () =>
         //teams name
         else {
           return {
-            OpponentNameInFirstGame: teamschedule.dates[0].games[0].teams.away.team.id
+            OpponentNameInFirstGame: teamschedule.dates[0].games[0].teams.away.team.name,
           }
         };
       };
@@ -110,7 +110,7 @@ const getTeam = () =>
             const teams = await getTeam();
             const teamschedule = await getTeamSchedule();
    
-
+            console.log(teamschedule.dates[0].games[0].teams.away.team.name);
             //Let user know the team was succesfully Extracted
             console.log("Extracted Team");
 
@@ -118,6 +118,8 @@ const getTeam = () =>
             const transformedTeam = transformTeam(teams);
             const transformedSchedule = transformSchedule(teamschedule);
             const transformedSchedule2 = transformSchedule2(teamschedule);
+
+
 
             //Combine the three different transformations into 1 string
             let team = transformedTeam;
