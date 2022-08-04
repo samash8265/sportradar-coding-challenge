@@ -22,7 +22,7 @@ var team_season;
 //Issue a prompt to the user asking for them to input the team ID
 //along with the season in the correct format
 team_id = prompt("Enter Team ID (Ex. 30): ");
-team_season = prompt("Enter the Season of interest (Ex: 20192020): ");
+team_season = prompt("Enter the Season of interest (Ex: 20182019): ");
 
 //EXTRACT STEP
 //taking information from the API into something I can work with
@@ -75,23 +75,24 @@ const getTeam = () =>
       function transformSchedule(teamschedule) {
 
         //if else loop that says for the first game of the season, if the
+        awayID = teamschedule.dates[0].games[0].teams.away.team.id;
+        homeName = teamschedule.dates[0].games[0].teams.home.team.name;
+        awayName = teamschedule.dates[0].games[0].teams.away.team.name;
+
+        teamsID = Number(team_id);
+
         //away teams ID = the team ID that was entered then the Home Teams
         //Name will be returned as that would be the opponent
-        if (teamschedule.dates[0].games[0].teams.away.team.id = parseInt(team_id)) {
-          return {
-            OpponentNameInFirstGame: teamschedule.dates[0].games[0].teams.home.team.name
-          }
-        }
+        if (awayID == teamsID) {
+            opponentName = homeName;
+        } else {
+            opponentName = awayName;      
+          };
 
-        //And then else states that if the "if" condition is false that means
-        //that the away team is the oppopnent and will then display the away
-        //teams name
-        else {
           return {
-            OpponentNameInFirstGame: teamschedule.dates[0].games[0].teams.away.team.name,
-          }
+            OpponentNameInFirstGame: opponentName,
+          };
         };
-      };
 
       function transformSchedule2(teamschedule) {
         return {
@@ -143,7 +144,7 @@ const getTeam = () =>
             console.log("Loaded team successfully");
 
             fs.writeFile("./teamdata.csv", csvstr, (err) => {
-                console.log(err || "Completed, View teamdata CSV File");
+                console.log(err || "Completed, View teamdata.csv in folder for the output");
             });
                 
         //Error catcher: If error is found, let user know that there was an error
@@ -155,3 +156,4 @@ const getTeam = () =>
 
       //Runs the team pipeline
       teamETL();
+
