@@ -13,7 +13,7 @@ These 3 npm's need to be installed in terminal once the repo is cloned to VS Cod
 ```
 npm install --save request-promise
 npm install util
-npm install --save prompt-sync-history
+npm install --save prompt-sync
 ```
 
 This chunk of code in the terminal will run the pipeline:
