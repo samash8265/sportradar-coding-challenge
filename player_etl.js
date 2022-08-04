@@ -1,5 +1,7 @@
 //Player Pipeline - Provide a Player ID and season year which outputs a CSV file.
 //Player ID, Player Name, Current Team, Player Age, Player Number, Player Position,
+//Player Pipeline - Provide a Player ID and season year which outputs a CSV file.
+//Player ID, Player Name, Current Team, Player Age, Player Number, Player Position,
 //If the player is a rookie, Assists, Goals, Games Hits, Points
 
 //Request-Promise requirement, tool for extracting data from API
@@ -107,12 +109,12 @@ const getPlayerStats = () =>
             console.log("Loaded Player Stats and Info Successfully");
 
             fs.writeFile("./playerdata.csv", csvstr, (err) => {
-                 console.log(err || "Completed, View playerdata CSV File");
+                 console.log(err || "Completed, View playerdata.csv in folder for ouput");
             });
                 
         //Error catcher: If error is found, let user know that there was an error
         } catch (err) {
-            console.log("caught error")
+            console.log("Player Data Not Available, Try Again")
           console.error(err);
         }
       };
